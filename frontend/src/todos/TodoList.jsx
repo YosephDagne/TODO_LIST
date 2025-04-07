@@ -6,9 +6,9 @@ const TodoList = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-semibold text-gray-800 mb-6">
+      <h1 className="text-3xl font-semibold text-gray-800 mb-6 pl-60 underline mt-5">
         Your Todo List
-      </h1>{" "}
+      </h1>
       {/* Title above the list */}
       {todos.map((todo) => (
         <TodoItem

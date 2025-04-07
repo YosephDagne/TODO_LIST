@@ -3,13 +3,14 @@ import { useTodos } from "./todoContext";
 import PrioritySelector from "../components/PrioritySelector";
 import Button from "../components/Button";
 
-const TodoForm = ({ onTaskCreated, editTodo }) => {
+const TodoForm = ({ editTodo }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("Maximum");
 
   const { addTodo, editTodoItem, setEditTodo } = useTodos();
 
+  // Set the form state when editTodo prop is passed
   useEffect(() => {
     if (editTodo) {
       setTitle(editTodo.title);
@@ -18,6 +19,7 @@ const TodoForm = ({ onTaskCreated, editTodo }) => {
     }
   }, [editTodo]);
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!title.trim() || !description.trim()) return;
@@ -29,18 +31,16 @@ const TodoForm = ({ onTaskCreated, editTodo }) => {
     };
 
     if (editTodo) {
-      editTodoItem(editTodo.id, newTodo); // Edit existing task
+      editTodoItem(editTodo.id, newTodo); // Update the existing todo
     } else {
-      addTodo(newTodo); // Add new task
+      addTodo(newTodo); // Add a new todo
     }
 
+    // Reset the form
     setTitle("");
     setDescription("");
     setPriority("Maximum");
-    setEditTodo(null);
-
-    // Hide the form after successfully adding or updating the task
-    onTaskCreated();
+    setEditTodo(null); // Reset edit state
   };
 
   return (
@@ -53,6 +53,7 @@ const TodoForm = ({ onTaskCreated, editTodo }) => {
       </h2>
 
       <div className="flex flex-col md:flex-row md:space-x-6 space-y-4 md:space-y-0">
+        {/* Title Input */}
         <input
           className="flex-1 p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-400 text-lg"
           value={title}
@@ -61,9 +62,11 @@ const TodoForm = ({ onTaskCreated, editTodo }) => {
           required
         />
 
+        {/* Priority Selector */}
         <PrioritySelector priority={priority} setPriority={setPriority} />
       </div>
 
+      {/* Description Textarea */}
       <textarea
         className="w-full p-4 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-400 text-lg"
         value={description}
@@ -73,10 +76,11 @@ const TodoForm = ({ onTaskCreated, editTodo }) => {
         required
       />
 
+      {/* Submit Button */}
       <div className="flex justify-between">
         <Button
           type="submit"
-          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg transition duration-200"
+          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg transition duration-200 cursor-pointer"
         >
           {editTodo ? "Update Task" : "Add Task"}
         </Button>
