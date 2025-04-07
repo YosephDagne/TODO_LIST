@@ -6,7 +6,7 @@ const TodoList = () => {
   const { todos, deleteTodo, setEditTodo } = useTodos();
 
   return (
-    <div>
+    <div className="space-y-4">
       {todos.map((todo) => (
         <TodoItem
           key={todo.id}
