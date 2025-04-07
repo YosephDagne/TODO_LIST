@@ -29,11 +29,11 @@ const Home = () => {
 
         {hasAccount ? <Login /> : <Signup />}
 
-        <p className="mt-4 text-sm text-gray-500">
+        <p className="mt-4 text-sm text-gray-500 cursor-pointer">
           {hasAccount ? "Don’t have an account?" : "Already have an account?"}{" "}
           <button
             onClick={() => setHasAccount(!hasAccount)}
-            className="text-indigo-600 font-medium hover:underline"
+            className="text-indigo-600 font-medium hover:underline cursor-pointer"
           >
             {hasAccount ? "Sign up" : "Log in"}
           </button>

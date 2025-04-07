@@ -1,4 +1,3 @@
-// File: todos/TodoList.jsx
 import { useTodos } from "./todoContext";
 import TodoItem from "./TodoItem";
 
@@ -6,7 +5,11 @@ const TodoList = () => {
   const { todos, deleteTodo, setEditTodo } = useTodos();
 
   return (
-    <div className="space-y-4">
+    <div>
+      <h1 className="text-3xl font-semibold text-gray-800 mb-6">
+        Your Todo List
+      </h1>{" "}
+      {/* Title above the list */}
       {todos.map((todo) => (
         <TodoItem
           key={todo.id}
