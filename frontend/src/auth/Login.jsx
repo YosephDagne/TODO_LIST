@@ -1,4 +1,3 @@
-// File: auth/Login.jsx
 import { useState } from "react";
 import { useAuth } from "./authContext";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -12,34 +11,35 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login(username, password); 
+    login(username, password);
 
-  
     const from = location.state?.from || "/dashboard";
     navigate(from);
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white p-8 rounded shadow-lg">
-      <h2 className="text-2xl font-semibold mb-4">Login</h2>
-      <form onSubmit={handleSubmit}>
+    <div>
+      <h2 className="text-2xl font-semibold text-center text-orange-500 mb-4">
+        Login
+      </h2>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Username"
-          className="w-full p-2 mb-4 border rounded"
+          className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
         />
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
-          className="w-full p-2 mb-4 border rounded"
+          className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
         />
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded cursor-pointer hover:bg-blue-600 transition duration-200"
+          className="bg-orange-500 text-white font-semibold py-2 rounded-lg hover:bg-orange-600 transition duration-300"
         >
           Login
         </button>

@@ -10,7 +10,6 @@ const TodoForm = ({ editTodo }) => {
 
   const { addTodo, editTodoItem, setEditTodo } = useTodos();
 
-  // Set the form state when editTodo prop is passed
   useEffect(() => {
     if (editTodo) {
       setTitle(editTodo.title);
@@ -19,7 +18,6 @@ const TodoForm = ({ editTodo }) => {
     }
   }, [editTodo]);
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!title.trim() || !description.trim()) return;
@@ -31,59 +29,48 @@ const TodoForm = ({ editTodo }) => {
     };
 
     if (editTodo) {
-      editTodoItem(editTodo.id, newTodo); // Update the existing todo
+      editTodoItem(editTodo.id, newTodo);
     } else {
-      addTodo(newTodo); // Add a new todo
+      addTodo(newTodo);
     }
 
-    // Reset the form
     setTitle("");
     setDescription("");
     setPriority("Maximum");
-    setEditTodo(null); // Reset edit state
+    setEditTodo(null);
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="bg-white p-8 rounded-xl shadow-lg mb-6 space-y-6 max-w-lg mx-auto"
-    >
-      <h2 className="text-2xl font-semibold text-gray-800 text-center">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      {/* <h2 className="text-xl font-semibold text-orange-500">
         {editTodo ? "Edit Task" : "Add New Task"}
-      </h2>
+      </h2> */}
 
-      <div className="flex flex-col md:flex-row md:space-x-6 space-y-4 md:space-y-0">
-        {/* Title Input */}
-        <input
-          className="flex-1 p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-400 text-lg"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Task title"
-          required
-        />
+      {/* Title Input */}
+      <input
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Task title"
+        required
+        className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+      />
 
-        {/* Priority Selector */}
-        <PrioritySelector priority={priority} setPriority={setPriority} />
-      </div>
+      {/* Priority Selector */}
+      <PrioritySelector priority={priority} setPriority={setPriority} />
 
       {/* Description Textarea */}
       <textarea
-        className="w-full p-4 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-400 text-lg"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         placeholder="Task description"
         rows={4}
         required
+        className="px-4 py-2 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-orange-400"
       />
 
       {/* Submit Button */}
-      <div className="flex justify-between">
-        <Button
-          type="submit"
-          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg transition duration-200 cursor-pointer"
-        >
-          {editTodo ? "Update Task" : "Add Task"}
-        </Button>
+      <div className="mt-2">
+        <Button type="submit">{editTodo ? "Update Task" : "Add Task"}</Button>
       </div>
     </form>
   );

@@ -12,30 +12,38 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6 flex items-center justify-center">
-      <div className="w-full max-w-4xl bg-white p-8 rounded-xl shadow-xl space-y-8">
-        {/* Header */}
-        <div className="flex justify-between items-center mb-8">
-          <div>
-            <p className="text-gray-900 text-2xl text-center pl-60 font-bold">
-              Welcome to your task manager
-            </p>
-          </div>
-          <button
-            onClick={logout}
-            className="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600 transition duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
-          >
-            Logout
-          </button>
+    <div className="min-h-screen bg-gray-50 p-8">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row items-center justify-between bg-white p-6 rounded-xl shadow-lg mb-8">
+        <div>
+          <h1 className="text-3xl font-semibold text-orange-600">
+            Welcome, {user?.username || "User"}
+          </h1>
+          <p className="text-sm text-gray-500">Your personal task manager</p>
         </div>
+        <button
+          onClick={logout}
+          className="bg-orange-500 text-white px-5 py-2 mt-4 md:mt-0 rounded-lg hover:bg-orange-600 transition"
+        >
+          Logout
+        </button>
+      </div>
 
+      {/* Main Content */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Todo Form */}
-        <div className="space-y-6">
+        <div className="bg-white p-8 rounded-xl shadow-lg">
+          <h2 className="text-2xl font-semibold text-orange-500 mb-4">
+            {editTodo ? "Edit Your Task" : "Create a New Task"}
+          </h2>
           <TodoForm editTodo={editTodo} />
         </div>
 
         {/* Todo List */}
-        <div className="space-y-6 mt-8">
+        <div className="bg-white p-8 rounded-xl shadow-lg">
+          <h2 className="text-2xl font-semibold text-orange-500 mb-4">
+            Your Tasks
+          </h2>
           <TodoList onEdit={handleEdit} />
         </div>
       </div>

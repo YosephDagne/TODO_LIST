@@ -5,19 +5,21 @@ const TodoList = () => {
   const { todos, deleteTodo, setEditTodo } = useTodos();
 
   return (
-    <div>
-      <h1 className="text-3xl font-semibold text-gray-800 mb-6 pl-60 underline mt-5">
-        Your Todo List
-      </h1>
-      {/* Title above the list */}
-      {todos.map((todo) => (
-        <TodoItem
-          key={todo.id}
-          todo={todo}
-          onDelete={deleteTodo}
-          onEdit={setEditTodo}
-        />
-      ))}
+    <div className="w-full">
+      {todos.length === 0 ? (
+        <p className="text-gray-500 italic">You have no tasks yet.</p>
+      ) : (
+        <div className="space-y-4">
+          {todos.map((todo) => (
+            <TodoItem
+              key={todo.id}
+              todo={todo}
+              onDelete={deleteTodo}
+              onEdit={setEditTodo}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
