@@ -4,18 +4,40 @@ import Login from "./auth/Login";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Signup from "./auth/Signup";
+import Navbar from "./components/Navbar";
 
 function App() {
   const { user } = useAuth();
   const location = useLocation();
 
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-    </Routes>
+    <div>
+      {/* Render Navbar always */}
+      <Navbar />
+
+      <Routes>
+        {/* Home route */}
+        <Route path="/" element={<Home />} />
+
+        {/* Login route */}
+        <Route
+          path="/login"
+          element={user ? <Navigate to="/dashboard" /> : <Login />}
+        />
+
+        {/* Signup route */}
+        <Route
+          path="/signup"
+          element={user ? <Navigate to="/dashboard" /> : <Signup />}
+        />
+
+        {/* Dashboard route, protected */}
+        <Route
+          path="/dashboard"
+          element={user ? <Dashboard /> : <Navigate to="/login" />}
+        />
+      </Routes>
+    </div>
   );
 }
 
