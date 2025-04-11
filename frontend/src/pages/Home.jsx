@@ -32,8 +32,8 @@ const Home = () => {
 
         {/* Right Section (Text and Button) */}
         <div className="flex-1 ml-8 text-center sm:text-left border-l-2 border-gray-300 mr-8 pl-4">
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-orange-600 mb-4">
-            እንኳን ደህና መጡ !!!
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-orange-600 mb-10">
+              WEL-COME !!!
           </h1>
           <p className="text-md sm:text-lg text-gray-700 mb-6">
             Organize your life, one task at a time. Stay productive, stay

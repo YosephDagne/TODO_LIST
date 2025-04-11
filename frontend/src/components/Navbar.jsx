@@ -1,12 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/authContext";
 
 const Navbar = () => {
   const { logout, user } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
-    window.location.href = "/"; // Redirect to Home page after logout
+    navigate("/login");
   };
 
   return (
@@ -16,7 +17,7 @@ const Navbar = () => {
         <div className="text-2xl font-semibold">
           <Link
             to="/"
-            className="hover:text-orange-300 transition-colors hover:underline"
+            className="hover:text-orange-300 transition-colors hover:underline italic"
           >
             HOME
           </Link>
@@ -24,26 +25,24 @@ const Navbar = () => {
 
         {/* Navigation Links or Button depending on user's login status */}
         <div className="flex space-x-6">
-          {/* If user is logged in, show logout option */}
           {user ? (
             <button
               onClick={handleLogout}
-              className="bg-orange-500 px-4 py-2 rounded-lg hover:bg-orange-700 transition-all"
+              className="bg-orange-500 px-4 py-2 rounded-lg hover:bg-orange-700 transition-all cursor-pointer"
             >
               Logout
             </button>
           ) : (
             <>
-              {/* If not logged in, show login and signup links */}
               <Link
                 to="/login"
-                className="hover:text-orange-300 transition-colors hover:bg-green-700 px-4 py-2 bg-blue-700 rounded-lg"
+                className=" transition-colors hover:bg-white px-8 py-2 hover:border-[1px] border-2 border-black hover:text-black bg-green-600 rounded-full "
               >
                 Login
               </Link>
               <Link
                 to="/signup"
-                className="bg-orange-500 px-4 py-2 rounded-lg hover:bg-orange-700 transition-all"
+                className="bg-orange-500 px-6 py-2 transition-all rounded-full hover:bg-cyan-500 hover:border-[1px] border-2 border-black hover:text-black"
               >
                 Sign Up
               </Link>
