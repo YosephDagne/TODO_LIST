@@ -27,6 +27,8 @@ const Signup = () => {
     try {
       const result = await signup({ email, password, name });
 
+      console.log("Signup result:", result);
+
       if (result.error) {
         setMsg(result.error);
       } else {
@@ -37,6 +39,7 @@ const Signup = () => {
         navigate("/dashboard");
       }
     } catch (error) {
+      console.error("Signup error:", error);
       setMsg("Something went wrong. Please try again.");
     }
   };
@@ -72,7 +75,7 @@ const Signup = () => {
           />
           <button
             type="submit"
-            className="bg-orange-500 text-white font-semibold py-2 rounded-lg hover:bg-orange-600 transition duration-300"
+            className="bg-orange-500 text-white font-semibold py-2 rounded-lg transition duration-300 hover:border-[1px] hover:bg-white hover:text-black cursor-pointer"
           >
             Sign Up
           </button>

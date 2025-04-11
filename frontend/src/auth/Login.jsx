@@ -20,9 +20,7 @@ const Login = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
-        <h2 className="text-3xl font-bold text-center text-orange-600 mb-6">
-          Welcome Back
-        </h2>
+        
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             type="text"
@@ -40,7 +38,7 @@ const Login = () => {
           />
           <button
             type="submit"
-            className="bg-orange-600 text-white font-semibold py-3 rounded-lg hover:bg-orange-700 transition duration-300"
+            className="bg-green-600 text-white font-semibold py-3 rounded-lg hover:bg-white transition duration-300 hover:border-[1px] hover:border-black hover:text-black cursor-pointer"
           >
             Login
           </button>

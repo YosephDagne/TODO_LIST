@@ -12,35 +12,32 @@ const Navbar = () => {
   return (
     <nav className="bg-gray-600 text-white p-4">
       <div className="flex justify-between items-center max-w-7xl mx-auto">
+        {/* Logo or Home Link */}
         <div className="text-2xl font-semibold">
-          <Link to="/" className="hover:text-orange-300 transition-colors hover:underline">
+          <Link
+            to="/"
+            className="hover:text-orange-300 transition-colors hover:underline"
+          >
             HOME
           </Link>
         </div>
 
+        {/* Navigation Links or Button depending on user's login status */}
         <div className="flex space-x-6">
-          {/* If user is logged in, show dashboard and logout options */}
+          {/* If user is logged in, show logout option */}
           {user ? (
-            <>
-              <Link
-                to="/dashboard"
-                className="hover:text-orange-300 transition-colors"
-              >
-                Dashboard
-              </Link>
-              <button
-                onClick={handleLogout}
-                className="bg-orange-500 px-4 py-2 rounded-lg hover:bg-orange-700 transition-all"
-              >
-                Logout
-              </button>
-            </>
+            <button
+              onClick={handleLogout}
+              className="bg-orange-500 px-4 py-2 rounded-lg hover:bg-orange-700 transition-all"
+            >
+              Logout
+            </button>
           ) : (
             <>
               {/* If not logged in, show login and signup links */}
               <Link
                 to="/login"
-                className="hover:text-orange-300 transition-colors hover:bg-green-700 px-4 py-2 bg-blue-700 rounded-lg "
+                className="hover:text-orange-300 transition-colors hover:bg-green-700 px-4 py-2 bg-blue-700 rounded-lg"
               >
                 Login
               </Link>
