@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useAuth } from "./authContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Signup = () => {
   const { signup } = useAuth();
-  const [email, setEmail] = useState(""); // Email state
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState(""); // Name field state
+  const [name, setName] = useState("");
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
@@ -14,7 +14,6 @@ const Signup = () => {
     e.preventDefault();
     setMsg("");
 
-    // Basic validation
     if (!email.trim() || !password.trim() || !name.trim()) {
       setMsg("All fields are required.");
       return;
@@ -34,7 +33,7 @@ const Signup = () => {
         setMsg("Signed up successfully! Redirecting to dashboard...");
         setEmail("");
         setPassword("");
-        setName(""); 
+        setName("");
         navigate("/dashboard");
       }
     } catch (error) {
@@ -43,43 +42,54 @@ const Signup = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-2xl font-semibold text-center text-orange-500 mb-4">
-        Sign Up
-      </h2>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <input
-          type="text"
-          name="name"
-          placeholder="Enter your name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
-        />
-        <input
-          type="email"
-          placeholder="Enter Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
-        />
-        <button
-          type="submit"
-          className="bg-orange-500 text-white font-semibold py-2 rounded-lg hover:bg-orange-600 transition duration-300"
-        >
-          Sign Up
-        </button>
-        {msg && <p className="text-sm text-center text-red-500 mt-2">{msg}</p>}
-      </form>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded-2xl shadow-lg max-w-md w-full">
+        <h2 className="text-3xl font-bold text-center text-orange-500 mb-6">
+          Create Account
+        </h2>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <input
+            type="text"
+            name="name"
+            placeholder="Full Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+          />
+          <input
+            type="email"
+            placeholder="Email Address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+          />
+          <input
+            type="password"
+            placeholder="Password (min 6 characters)"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+          />
+          <button
+            type="submit"
+            className="bg-orange-500 text-white font-semibold py-2 rounded-lg hover:bg-orange-600 transition duration-300"
+          >
+            Sign Up
+          </button>
+        </form>
+
+        {msg && <p className="text-sm text-center text-red-500 mt-4">{msg}</p>}
+
+        <p className="text-sm text-center mt-6 text-gray-600">
+          Already have an account?{" "}
+          <Link
+            to="/login"
+            className="text-orange-500 hover:underline font-medium"
+          >
+            Log in
+          </Link>
+        </p>
+      </div>
     </div>
   );
 };

@@ -3,28 +3,18 @@ import { useAuth } from "./auth/authContext";
 import Login from "./auth/Login";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
+import Signup from "./auth/Signup";
 
 function App() {
   const { user } = useAuth();
-  const location = useLocation(); // Get the current location
+  const location = useLocation();
 
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
-      <Route
-        path="/dashboard"
-        element={
-          user ? (
-            <Dashboard />
-          ) : (
-            <Navigate
-              to="/login"
-              state={{ from: location }} 
-            />
-          )
-        }
-      />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   );
 }

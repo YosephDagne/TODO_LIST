@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "./authContext";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 
 const Login = () => {
   const { login } = useAuth();
@@ -18,32 +18,44 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-2xl font-semibold text-center text-orange-500 mb-4">
-        Login
-      </h2>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="Username"
-          className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
-        />
-        <button
-          type="submit"
-          className="bg-orange-500 text-white font-semibold py-2 rounded-lg hover:bg-orange-600 transition duration-300"
-        >
-          Login
-        </button>
-      </form>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
+        <h2 className="text-3xl font-bold text-center text-orange-600 mb-6">
+          Welcome Back
+        </h2>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Username"
+            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 text-lg"
+          />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 text-lg"
+          />
+          <button
+            type="submit"
+            className="bg-orange-600 text-white font-semibold py-3 rounded-lg hover:bg-orange-700 transition duration-300"
+          >
+            Login
+          </button>
+        </form>
+
+        <p className="text-sm text-center mt-6 text-gray-600">
+          Don't have an account?{" "}
+          <Link
+            to="/signup"
+            className="text-orange-500 hover:underline font-medium"
+          >
+            Sign up
+          </Link>
+        </p>
+      </div>
     </div>
   );
 };

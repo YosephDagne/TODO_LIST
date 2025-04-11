@@ -25,7 +25,7 @@ const TodoItem = ({ todo, onEdit, onDelete }) => {
           {todo.description}
         </p>
 
-        <p className="text-xs text-gray-400 mt-2">Created {timeAgo}</p>
+        <p className="text-xs text-gray-400 mt-2">CreatedAt: {timeAgo}</p>
       </div>
 
       <div className="flex justify-end gap-2 mt-4">

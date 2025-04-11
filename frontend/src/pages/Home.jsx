@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Signup from "../auth/Signup";
-import Login from "../auth/Login";
 import { useAuth } from "../auth/authContext";
 
 const Home = () => {
@@ -9,37 +7,44 @@ const Home = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
 
-  // Redirect to dashboard if user is already logged in
   useEffect(() => {
     if (user) {
       navigate("/dashboard");
     }
   }, [user, navigate]);
 
+  const handleCreateTask = () => {
+    navigate("/signup");
+  };
+
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-400 px-4">
-      <div className="bg-white shadow-2xl rounded-2xl p-8 max-w-md w-full">
-        <h1 className="text-4xl font-bold text-center text-orange-500 mb-4">
+    <div className="w-full min-h-screen bg-gradient-to-br flex items-center justify-center p-6">
+      <div className="w-full  bg-white  rounded-3xl p-10 sm:p-16 text-center">
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-orange-600 mb-4">
           Welcome to TaskMate
         </h1>
 
-        <p className="text-lg text-center text-gray-700 mb-6">
-          Your personal to-do list manager.{" "}
-          {hasAccount ? "Login to continue." : "Create your account."}
+        <p className="text-md sm:text-lg text-gray-700 mb-6">
+          Organize your life, one task at a time. Stay productive, stay focused,
+          and make every moment count.
         </p>
 
-        {hasAccount ? <Login /> : <Signup />}
+        <p className="text-orange-500 font-medium text-base sm:text-lg mb-8">
+          Create your first task today and take the first step toward your
+          goals. 🚀
+        </p>
 
-        <div className="text-center mt-6">
-          <p className="text-sm text-gray-600">
-            {hasAccount ? "Don’t have an account?" : "Already have an account?"}
-          </p>
+        {!user && (
           <button
-            onClick={() => setHasAccount(!hasAccount)}
-            className="mt-2 text-orange-500 hover:underline font-semibold"
+            onClick={handleCreateTask}
+            className="bg-orange-500 text-white px-8 py-3 rounded-full font-semibold text-lg hover:bg-orange-600 hover:scale-105 transition-all duration-300 shadow-md"
           >
-            {hasAccount ? "Sign up" : "Log in"}
+            Get Started
           </button>
+        )}
+
+        <div className="mt-10 text-sm text-gray-500">
+          <p>✨ Built for dreamers, doers, and achievers like you.</p>
         </div>
       </div>
     </div>
